@@ -3,16 +3,9 @@
   "include": ["src/**/*"],
   "compilerOptions": {
     "outDir": "dist",
+    "rootDir": "src",
     "composite": true,
     "declaration": true,
     "declarationMap": true,
   },
-  "references": [
-    {
-      "path": "../lib-cache-store"
-    },
-    {
-      "path": "../lib-hash"
-    }
-  ]
 }

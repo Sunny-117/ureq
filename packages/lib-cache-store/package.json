@@ -8,7 +8,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup --config tsup.config.ts",
+    "build": "tsup",
     "dev": "tsup --config tsup.config.ts --watch",
     "test": "vitest"
   },

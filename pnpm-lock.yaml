@@ -52,7 +52,7 @@ importers:
     dependencies:
       '@ureq/lib-cache-store':
         specifier: workspace:*
-        version: link:../lib/cache-store
+        version: link:../lib-cache-store
       '@ureq/lib-hash':
         specifier: workspace:*
         version: link:../lib/hash
@@ -104,6 +104,15 @@ importers:
       vitest:
         specifier: ^1.0.0
         version: 1.6.1(@types/node@20.17.19)
+
+  packages/lib-cache-store:
+    devDependencies:
+      tsup:
+        specifier: 8.3.6
+        version: 8.3.6(jiti@2.4.2)(postcss@8.5.3)(typescript@5.7.3)
+      typescript:
+        specifier: 5.7.3
+        version: 5.7.3
 
   packages/lib/cache-store:
     devDependencies:
