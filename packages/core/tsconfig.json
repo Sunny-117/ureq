@@ -7,6 +7,5 @@
     "composite": true,
     "declaration": true,
     "declarationMap": true,
-    "tsBuildInfoFile": "./dist/.tsbuildinfo"
   }
 }
