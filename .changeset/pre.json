@@ -2,11 +2,11 @@
   "mode": "pre",
   "tag": "alpha",
   "initialVersions": {
-    "@request/core": "0.0.1-alpha.1",
-    "@request/impl-axios": "1.0.0",
-    "@request/impl-fetch": "1.0.0",
-    "@request/lib-cache-store": "1.0.0",
-    "@request/lib-hash": "1.0.0"
+    "@ureq/core": "0.0.1-alpha.1",
+    "@ureq/impl-axios": "1.0.0",
+    "@ureq/impl-fetch": "1.0.0",
+    "@ureq/lib-cache-store": "1.0.0",
+    "@ureq/lib-hash": "1.0.0"
   },
   "changesets": []
 }

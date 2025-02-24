@@ -48,18 +48,12 @@ importers:
         specifier: ^1.0.0
         version: 1.6.1(@types/node@20.17.19)
 
-  docs:
-    devDependencies:
-      vitepress:
-        specifier: ^1.0.0
-        version: 1.6.3(@algolia/client-search@5.20.3)(@types/node@20.17.19)(axios@1.7.9)(postcss@8.5.3)(search-insights@2.17.3)(typescript@5.7.3)
-
   packages/core:
     dependencies:
-      '@request/lib-cache-store':
+      '@ureq/lib-cache-store':
         specifier: workspace:*
         version: link:../lib/cache-store
-      '@request/lib-hash':
+      '@ureq/lib-hash':
         specifier: workspace:*
         version: link:../lib/hash
     devDependencies:
@@ -72,7 +66,7 @@ importers:
 
   packages/impl/axios:
     dependencies:
-      '@request/core':
+      '@ureq/core':
         specifier: workspace:*
         version: link:../../core
       axios:
@@ -94,7 +88,7 @@ importers:
 
   packages/impl/fetch:
     dependencies:
-      '@request/core':
+      '@ureq/core':
         specifier: workspace:*
         version: link:../../core
     devDependencies:

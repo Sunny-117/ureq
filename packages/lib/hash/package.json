@@ -1,5 +1,5 @@
 {
-  "name": "@request/lib-hash",
+  "name": "@ureq/lib-hash",
   "version": "0.0.1-alpha.1",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

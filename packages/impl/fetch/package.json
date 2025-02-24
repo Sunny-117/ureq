@@ -1,5 +1,5 @@
 {
-  "name": "@request/impl-fetch",
+  "name": "@ureq/impl-fetch",
   "version": "0.0.1-alpha.1",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -13,7 +13,7 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@request/core": "workspace:*"
+    "@ureq/core": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

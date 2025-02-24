@@ -1,5 +1,5 @@
 {
-  "name": "@request/lib-cache-store",
+  "name": "@ureq/lib-cache-store",
   "version": "0.0.1-alpha.1",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

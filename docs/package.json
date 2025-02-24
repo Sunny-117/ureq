@@ -1,5 +1,5 @@
 {
-  "name": "@request/docs",
+  "name": "@ureq/docs",
   "version": "0.0.1-alpha.1",
   "private": true,
   "scripts": {
@@ -8,6 +8,9 @@
     "preview": "vitepress preview"
   },
   "devDependencies": {
-    "vitepress": "^1.0.0"
+    "vitepress": "^1.0.0",
+    "@ureq/core": "workspace:*",
+    "@ureq/impl-fetch": "workspace:*",
+    "@ureq/impl-axios": "workspace:*"
   }
 }

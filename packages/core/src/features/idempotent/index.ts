@@ -1,5 +1,5 @@
 import { Requestor, RequestOptions, Response } from '../../interfaces/request';
-import { generateHash } from '@request/lib-hash';
+import { generateHash } from '@ureq/lib-hash';
 
 interface PendingRequest<T> {
   promise: Promise<Response<T>>;

@@ -1,7 +1,7 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
-  title: '@request',
+  title: '@ureq',
   description: '模块化、可扩展的 HTTP 请求库 | A modular and extensible HTTP request library',
   
   themeConfig: {
@@ -25,7 +25,7 @@ export default defineConfig({
         {
           text: '介绍 | Introduction',
           items: [
-            { text: '什么是 @request', link: '/guide/' },
+            { text: '什么是 @ureq', link: '/guide/' },
             { text: '快速开始', link: '/guide/getting-started' }
           ]
         },

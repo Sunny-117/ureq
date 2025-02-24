@@ -1,5 +1,5 @@
 {
-  "name": "@request/monorepo",
+  "name": "@ureq/monorepo",
   "version": "0.0.1-alpha.1",
   "private": true,
   "scripts": {
@@ -15,9 +15,9 @@
     "version-packages": "changeset version",
     "release": "pnpm build && changeset publish",
     "release:alpha": "pnpm build && changeset pre enter alpha && changeset version && changeset publish",
-    "docs:dev": "pnpm --filter @request/docs dev",
-    "docs:build": "pnpm --filter @request/docs build",
-    "docs:preview": "pnpm --filter @request/docs preview"
+    "docs:dev": "pnpm --filter @ureqdocs dev",
+    "docs:build": "pnpm --filter @ureqdocs build",
+    "docs:preview": "pnpm --filter @ureqdocs preview"
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.0",

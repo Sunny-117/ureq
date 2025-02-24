@@ -1,5 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig, ResponseType } from 'axios';
-import { Requestor, RequestOptions, Response, RequestError } from '@request/core';
+import { Requestor, RequestOptions, Response, RequestError } from '@ureq/core';
 
 export interface AxiosRequestorOptions {
   baseURL?: string;

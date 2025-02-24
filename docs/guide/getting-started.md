@@ -4,17 +4,17 @@
 
 ```bash
 # npm
-npm install @request/core @request/impl-fetch
+npm install @ureq/core @ureq/impl-fetch
 
 # pnpm 
-pnpm add @request/core @request/impl-fetch
+pnpm add @ureq/core @ureq/impl-fetch
 ```
 
 ## 基础使用
 
 ```typescript
-import { Request } from '@request/core';
-import { FetchRequestor } from '@request/impl-fetch';
+import { Request } from '@ureq';
+import { FetchRequestor } from '@ureq/impl-fetch';
 
 const request = new Request(new FetchRequestor());
 

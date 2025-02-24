@@ -1,5 +1,5 @@
 {
-  "name": "@request/impl-axios",
+  "name": "@ureq/impl-axios",
   "version": "0.0.1-alpha.1",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -13,7 +13,7 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@request/core": "workspace:*",
+    "@ureq/core": "workspace:*",
     "axios": "^1.0.0"
   },
   "devDependencies": {

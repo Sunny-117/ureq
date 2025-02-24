@@ -1,5 +1,5 @@
 {
-  "name": "@request/core",
+  "name": "@ureq/core",
   "version": "0.0.1-alpha.1",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -13,8 +13,8 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@request/lib-cache-store": "workspace:*",
-    "@request/lib-hash": "workspace:*"
+    "@ureq/lib-cache-store": "workspace:*",
+    "@ureq/lib-hash": "workspace:*"
   },
   "devDependencies": {
     "tsup": "8.3.6",

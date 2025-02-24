@@ -1,4 +1,4 @@
-import { Requestor, RequestOptions, Response, RequestError } from '@request/core';
+import { Requestor, RequestOptions, Response, RequestError } from '@ureq/core';
 
 export interface FetchRequestorOptions {
   baseURL?: string;

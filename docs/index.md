@@ -2,12 +2,12 @@
 layout: home
 
 hero:
-  name: "@request"
+  name: "@ureq"
   text: "模块化、可扩展的 HTTP 请求库"
   tagline: A modular and extensible HTTP request library
   image:
     src: /logo.svg
-    alt: "@request logo"
+    alt: "@ureq logo"
   actions:
     - theme: brand
       text: 开始使用 | Get Started

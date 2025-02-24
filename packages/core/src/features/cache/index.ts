@@ -1,5 +1,5 @@
 import { Requestor, RequestOptions, Response } from '../../interfaces/request';
-import { MemoryStore } from '@request/lib-cache-store';
+import { MemoryStore } from '@ureq/lib-cache-store';
 
 export interface CacheOptions {
   ttl?: number;

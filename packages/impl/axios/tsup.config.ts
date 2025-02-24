@@ -1,5 +1,5 @@
 import { createTsupConfig } from '../../../scripts/tsup.base';
 
 export default createTsupConfig({
-  external: ['@request/core', 'axios']
+  external: ['@ureq/core', 'axios']
 }); 

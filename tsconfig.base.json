@@ -15,7 +15,7 @@
     "declarationMap": true,
     "baseUrl": ".",
     "paths": {
-      "@request/*": ["packages/*/src"]
+      "@ureq/*": ["packages/*/src"]
     }
   },
   "exclude": ["node_modules", "dist", "**/dist"]
