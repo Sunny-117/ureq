@@ -1,0 +1,13 @@
+{
+  "name": "@request/docs",
+  "version": "0.0.1-alpha.1",
+  "private": true,
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
+  },
+  "devDependencies": {
+    "vitepress": "^1.0.0"
+  }
+}
