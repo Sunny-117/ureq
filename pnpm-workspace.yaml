@@ -3,3 +3,4 @@ packages:
   - 'packages/impl/*'
   - 'packages/lib/*'
   - 'packages/business' 
+  - 'packages/*' 

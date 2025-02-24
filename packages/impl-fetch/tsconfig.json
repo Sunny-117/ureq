@@ -1,16 +1,16 @@
 {
-  "extends": "../../../tsconfig.base.json",
+  "extends": "../../tsconfig.base.json",
   "include": ["src"],
   "compilerOptions": {
     "outDir": "dist",
     "baseUrl": ".",
     "paths": {
-      "@ureq/*": ["../../../packages/*/src"]
+      "@ureq/*": ["../../packages/*/src"]
     }
   },
   "references": [
     {
-      "path": "../../core"
+      "path": "../core"
     }
   ]
 } 
