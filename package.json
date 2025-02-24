@@ -1,0 +1,37 @@
+{
+  "name": "@request/monorepo",
+  "version": "0.0.1-alpha.1",
+  "private": true,
+  "scripts": {
+    "prepare": "husky install",
+    "preinstall": "npx only-allow pnpm",
+    "clean": "pnpm -r exec rimraf dist .turbo .tsbuildinfo",
+    "build": "pnpm clean && pnpm --filter \"./packages/lib/*\" build && pnpm --filter \"./packages/core\" build && pnpm --filter \"./packages/impl/*\" build",
+    "dev": "pnpm -r dev",
+    "test": "pnpm -r test",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write \"**/*.{ts,md,json}\"",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "pnpm build && changeset publish",
+    "release:alpha": "pnpm build && changeset pre enter alpha && changeset version && changeset publish",
+    "docs:dev": "pnpm --filter @request/docs dev",
+    "docs:build": "pnpm --filter @request/docs build",
+    "docs:preview": "pnpm --filter @request/docs preview"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.26.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.0",
+    "@typescript-eslint/parser": "^5.59.0",
+    "eslint": "^8.38.0",
+    "eslint-config-prettier": "^8.8.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.1",
+    "prettier": "^2.8.7",
+    "rimraf": "^5.0.0",
+    "typescript": "^5.0.4",
+    "tsup": "^8.0.0",
+    "vitest": "^1.0.0",
+    "vitepress": "^1.0.0"
+  }
+} 

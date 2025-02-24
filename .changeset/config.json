@@ -1,0 +1,19 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@2.3.0/schema.json",
+  "changelog": "@changesets/cli/changelog",
+  "commit": false,
+  "fixed": [
+    [
+      "@request/core",
+      "@request/impl-axios",
+      "@request/impl-fetch",
+      "@request/lib-cache-store",
+      "@request/lib-hash"
+    ]
+  ],
+  "linked": [],
+  "access": "public",
+  "baseBranch": "main",
+  "updateInternalDependencies": "patch",
+  "ignore": []
+} 

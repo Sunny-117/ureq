@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "sourceMap": true,
+    "isolatedModules": true,
+    "composite": true,
+    "declarationMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "@request/*": ["packages/*/src"]
+    }
+  },
+  "exclude": ["node_modules", "dist", "**/dist"]
+} 
