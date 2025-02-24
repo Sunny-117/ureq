@@ -1,12 +1,5 @@
-import { defineConfig } from 'tsup';
+import { createTsupConfig } from '../../scripts/tsup.base';
 
-export default defineConfig({
-  entry: ['src/index.ts'],
-  format: ['cjs', 'esm'],
-  dts: true,
-  splitting: false,
-  sourcemap: true,
-  clean: true,
-  treeshake: true,
-  minify: true,
+export default createTsupConfig({
+  external: ['@ureq/core']
 }); 
