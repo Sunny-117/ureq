@@ -1,6 +1,6 @@
 {
   "name": "@ureq/monorepo",
-  "version": "0.0.1-alpha.1",
+  "version": "0.0.1-alpha.2",
   "private": true,
   "scripts": {
     "prepare": "husky install",
@@ -11,16 +11,18 @@
     "test": "pnpm -r test",
     "lint": "eslint . --ext .ts",
     "format": "prettier --write \"**/*.{ts,md,json}\"",
-    "changeset": "changeset",
-    "version-packages": "changeset version",
-    "release": "pnpm build && changeset publish",
-    "release:alpha": "pnpm build && changeset pre enter alpha && changeset version && changeset publish",
+    "changeset": "bumpp package.json packages/*/package.json --all",
+    "version-packages": "bumpp package.json packages/*/package.json --all",
+    "release": "pnpm build && pnpm publish -r",
+    "release:alpha": "pnpm clean && pnpm build && node scripts/check-dist.js && bumpp package.json packages/*/package.json --all --preid alpha --prerelease && pnpm publish -r --tag alpha",
     "docs:dev": "pnpm --filter @ureqdocs dev",
     "docs:build": "pnpm --filter @ureqdocs build",
-    "docs:preview": "pnpm --filter @ureqdocs preview"
+    "docs:preview": "pnpm --filter @ureqdocs preview",
+    "check-dist": "node scripts/check-dist.js",
+    "enter:alpha": null,
+    "exit:alpha": null
   },
   "devDependencies": {
-    "@changesets/cli": "^2.26.0",
     "@typescript-eslint/eslint-plugin": "^5.59.0",
     "@typescript-eslint/parser": "^5.59.0",
     "eslint": "^8.38.0",
@@ -32,6 +34,7 @@
     "typescript": "^5.0.4",
     "tsup": "^8.0.0",
     "vitest": "^1.0.0",
-    "vitepress": "^1.0.0"
+    "vitepress": "^1.0.0",
+    "bumpp": "^9.3.0"
   }
 } 
