@@ -1,0 +1,1 @@
+core与@ureq/lib-hash和@ureq/lib-cache-store解偶，通过business调用@ureq/lib-hash和@ureq/lib-cache-store
