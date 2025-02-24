@@ -14,11 +14,10 @@
     "changeset": "bumpp package.json packages/*/package.json --all",
     "version-packages": "bumpp package.json packages/*/package.json --all",
     "release": "pnpm build && pnpm publish -r",
-    "release:alpha": "pnpm clean && pnpm build && node scripts/check-dist.js && bumpp package.json packages/*/package.json --all --preid alpha --prerelease && pnpm publish -r --tag alpha",
+    "release:alpha": "pnpm clean && pnpm build && bumpp package.json packages/*/package.json --all --preid alpha --prerelease && pnpm publish -r --tag alpha",
     "docs:dev": "pnpm --filter @ureqdocs dev",
     "docs:build": "pnpm --filter @ureqdocs build",
     "docs:preview": "pnpm --filter @ureqdocs preview",
-    "check-dist": "node scripts/check-dist.js",
     "enter:alpha": null,
     "exit:alpha": null
   },
