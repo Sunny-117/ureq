@@ -1,6 +1,6 @@
 {
   "name": "@ureq/impl-axios",
-  "version": "0.0.1-alpha.4",
+  "version": "0.0.1",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",

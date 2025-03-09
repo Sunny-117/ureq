@@ -1,6 +1,6 @@
 {
   "name": "@ureq/monorepo",
-  "version": "0.0.1-alpha.4",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "prepare": "husky install",
@@ -11,17 +11,12 @@
     "test": "pnpm -r test",
     "lint": "eslint . --ext .ts",
     "format": "prettier --write \"**/*.{ts,md,json}\"",
-    "changeset": "bumpp package.json packages/*/package.json --all",
-    "version-packages": "bumpp package.json packages/*/package.json --all",
-    "release": "pnpm build && pnpm publish -r",
-    "release:alpha": "pnpm clean && pnpm build && bumpp package.json packages/*/package.json --all --preid alpha --prerelease && pnpm publish -r --tag alpha",
     "docs:dev": "pnpm --filter @ureqdocs dev",
     "docs:build": "pnpm --filter @ureqdocs build",
-    "docs:preview": "pnpm --filter @ureqdocs preview",
-    "enter:alpha": null,
-    "exit:alpha": null
+    "docs:preview": "pnpm --filter @ureqdocs preview"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.28.1",
     "@typescript-eslint/eslint-plugin": "^5.59.0",
     "@typescript-eslint/parser": "^5.59.0",
     "bumpp": "^9.3.0",
