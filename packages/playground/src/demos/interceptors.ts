@@ -1,12 +1,12 @@
-const { Request: UreqRequest } = require('@ureq/core');
-const { FetchRequestor } = require('@ureq/impl-fetch');
+import { Request as UreqRequestInterceptors } from '@ureq/core';
+import { FetchRequestor as FetchRequestorInterceptors } from '@ureq/impl-fetch';
 
-const MOCK_API_BASE = 'https://jsonplaceholder.typicode.com';
+const MOCK_API_BASE_INTERCEPTORS = 'https://jsonplaceholder.typicode.com';
 
 async function runInterceptorsDemo() {
   console.log('🔧 Interceptors Demo\n');
 
-  const request = new UreqRequest(new FetchRequestor({ baseURL: MOCK_API_BASE }));
+  const request = new UreqRequestInterceptors(new FetchRequestorInterceptors({ baseURL: MOCK_API_BASE_INTERCEPTORS }));
 
   // Demo 1: Request Interceptor
   console.log('📤 Request Interceptor Demo:');
@@ -37,7 +37,7 @@ async function runInterceptorsDemo() {
   console.log('\n📥 Response Interceptor Demo:');
   
   const removeResponseInterceptor = request.interceptors.addResponseInterceptor({
-    onResponse: (response) => {
+    onResponse: (response: any) => {
       console.log('  🔍 Response interceptor: Adding metadata and transforming data');
       return {
         ...response,
@@ -68,7 +68,7 @@ async function runInterceptorsDemo() {
   
   // Add another request interceptor
   const removeSecondRequestInterceptor = request.interceptors.addRequestInterceptor({
-    onRequest: (config) => {
+    onRequest: (config: any) => {
       console.log('  🔍 Second request interceptor: Adding user agent');
       return {
         ...config,
@@ -82,7 +82,7 @@ async function runInterceptorsDemo() {
 
   // Add another response interceptor
   const removeSecondResponseInterceptor = request.interceptors.addResponseInterceptor({
-    onResponse: (response) => {
+    onResponse: (response: any) => {
       console.log('  🔍 Second response interceptor: Adding processing time');
       return {
         ...response,
@@ -112,7 +112,7 @@ async function runInterceptorsDemo() {
   console.log('\n🎯 Conditional Interceptor Demo:');
   
   const removeConditionalInterceptor = request.interceptors.addRequestInterceptor({
-    onRequest: (config) => {
+    onRequest: (config: any) => {
       // Only add special header for specific endpoints
       if (config.url?.includes('/posts/4')) {
         console.log('  🔍 Conditional interceptor: Adding special header for posts/4');
@@ -162,9 +162,9 @@ async function runInterceptorsDemo() {
   console.log('\n✅ Interceptors demo completed!\n');
 }
 
-module.exports = { runInterceptorsDemo };
+export { runInterceptorsDemo };
 
 // Run the demo if this file is executed directly
-if (require.main === module) {
+if (import.meta.url === `file://${process.argv[1]}`) {
   runInterceptorsDemo().catch(console.error);
 }

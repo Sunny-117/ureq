@@ -1,9 +1,9 @@
-const { Request: UreqRequest } = require('@ureq/core');
-const { FetchRequestor } = require('@ureq/impl-fetch');
-const { AxiosRequestor } = require('@ureq/impl-axios');
+import { Request as UreqRequest } from '../../../core/dist/index.mjs';
+import { FetchRequestor } from '../../../impl-fetch/dist/index.mjs';
+import { AxiosRequestor } from '../../../impl-axios/dist/index.mjs';
 
 // Mock API endpoints for demonstration
-const MOCK_API_BASE = 'https://jsonplaceholder.typicode.com';
+const MOCK_API_BASE_BASIC = 'https://jsonplaceholder.typicode.com';
 
 async function runBasicDemo() {
   console.log('🔥 Basic HTTP Methods Demo\n');
@@ -11,7 +11,7 @@ async function runBasicDemo() {
   // Demo with Fetch implementation
   console.log('📡 Using Fetch Implementation:');
   const fetchRequest = new UreqRequest(new FetchRequestor({
-    baseURL: MOCK_API_BASE
+    baseURL: MOCK_API_BASE_BASIC
   }));
 
   try {
@@ -58,7 +58,7 @@ async function runBasicDemo() {
   // Demo with Axios implementation
   console.log('\n📡 Using Axios Implementation:');
   const axiosRequest = new UreqRequest(new AxiosRequestor({
-    baseURL: MOCK_API_BASE
+    baseURL: MOCK_API_BASE_BASIC
   }));
 
   try {
@@ -90,9 +90,9 @@ async function runBasicDemo() {
   console.log('\n✅ Basic demo completed!\n');
 }
 
-module.exports = { runBasicDemo };
+export { runBasicDemo };
 
 // Run the demo if this file is executed directly
-if (require.main === module) {
+if (import.meta.url === `file://${process.argv[1]}`) {
   runBasicDemo().catch(console.error);
 }

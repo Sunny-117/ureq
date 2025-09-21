@@ -1,15 +1,15 @@
-const { Request: UreqRequest } = require('@ureq/core');
-const { FetchRequestor } = require('@ureq/impl-fetch');
-const { AxiosRequestor } = require('@ureq/impl-axios');
+import { Request as UreqRequestError, type RequestError } from '@ureq/core';
+import { FetchRequestor as FetchRequestorError } from '@ureq/impl-fetch';
+import { AxiosRequestor as AxiosRequestorError } from '@ureq/impl-axios';
 
-const MOCK_API_BASE = 'https://jsonplaceholder.typicode.com';
+const MOCK_API_BASE_ERROR = 'https://jsonplaceholder.typicode.com';
 
 async function runErrorHandlingDemo() {
   console.log('❌ Error Handling Demo\n');
 
   // Demo 1: 404 Not Found Error
   console.log('🔍 404 Not Found Error Demo:');
-  const fetchRequest = new UreqRequest(new FetchRequestor({ baseURL: MOCK_API_BASE }));
+  const fetchRequest = new UreqRequestError(new FetchRequestorError({ baseURL: MOCK_API_BASE_ERROR }));
 
   try {
     console.log('  Requesting non-existent resource /posts/999999...');
@@ -22,7 +22,7 @@ async function runErrorHandlingDemo() {
 
   // Demo 2: Network Error Simulation
   console.log('\n🌐 Network Error Demo:');
-  const invalidRequest = new UreqRequest(new FetchRequestor({ baseURL: 'https://invalid-domain-that-does-not-exist.com' }));
+  const invalidRequest = new UreqRequestError(new FetchRequestorError({ baseURL: 'https://invalid-domain-that-does-not-exist.com' }));
 
   try {
     console.log('  Requesting from invalid domain...');
@@ -35,7 +35,7 @@ async function runErrorHandlingDemo() {
 
   // Demo 3: Timeout Error
   console.log('\n⏱️  Timeout Error Demo:');
-  const timeoutRequest = new UreqRequest(new FetchRequestor({ baseURL: MOCK_API_BASE }), {
+  const timeoutRequest = new UreqRequestError(new FetchRequestorError({ baseURL: MOCK_API_BASE_ERROR }), {
     timeout: 1 // Very short timeout to trigger error
   });
 
@@ -52,7 +52,7 @@ async function runErrorHandlingDemo() {
   console.log('\n🔄 Retry with Error Recovery Demo:');
   let attemptCount = 0;
 
-  const retryRequest = new UreqRequest(new FetchRequestor({ baseURL: MOCK_API_BASE }), {
+  const retryRequest = new UreqRequestError(new FetchRequestorError({ baseURL: MOCK_API_BASE_ERROR }), {
     retry: {
       maxRetries: 3,
       retryDelay: 500,
@@ -77,7 +77,7 @@ async function runErrorHandlingDemo() {
 
   // Demo 5: Error Interceptor
   console.log('\n🔧 Error Interceptor Demo:');
-  const interceptorRequest = new UreqRequest(new FetchRequestor({ baseURL: MOCK_API_BASE }));
+  const interceptorRequest = new UreqRequestError(new FetchRequestorError({ baseURL: MOCK_API_BASE_ERROR }));
 
   // Add error handling interceptor
   interceptorRequest.interceptors.addResponseInterceptor({
@@ -90,7 +90,7 @@ async function runErrorHandlingDemo() {
       // Add metadata to error
       (error as any).metadata = {
         interceptedAt: new Date().toISOString(),
-        errorId: Math.random().toString(36).substr(2, 9)
+        errorId: Math.random().toString(36).substring(2, 11)
       };
       
       // Re-throw the error with metadata
@@ -110,7 +110,7 @@ async function runErrorHandlingDemo() {
   console.log('\n🛡️  Graceful Error Handling Demo:');
   
   async function fetchWithFallback(url: string) {
-    const primaryRequest = new UreqRequest(new FetchRequestor({ baseURL: MOCK_API_BASE }));
+    const primaryRequest = new UreqRequestError(new FetchRequestorError({ baseURL: MOCK_API_BASE_ERROR }));
     
     try {
       console.log(`    🎯 Trying primary request: ${url}`);
@@ -123,7 +123,7 @@ async function runErrorHandlingDemo() {
         const fallbackData = await primaryRequest.get('/posts/1');
         console.log('    ✅ Fallback request succeeded');
         return {
-          ...fallbackData,
+          ...(fallbackData as any),
           _fallback: true,
           _originalUrl: url
         };
@@ -148,7 +148,7 @@ async function runErrorHandlingDemo() {
   // Demo 7: Different Error Types Comparison
   console.log('\n⚖️  Error Types Comparison (Fetch vs Axios):');
   
-  const axiosRequest = new UreqRequest(new AxiosRequestor({ baseURL: MOCK_API_BASE }));
+  const axiosRequest = new UreqRequestError(new AxiosRequestorError({ baseURL: MOCK_API_BASE_ERROR }));
   
   console.log('  Fetch implementation error:');
   try {
@@ -169,9 +169,9 @@ async function runErrorHandlingDemo() {
   console.log('\n✅ Error handling demo completed!\n');
 }
 
-module.exports = { runErrorHandlingDemo };
+export { runErrorHandlingDemo };
 
 // Run the demo if this file is executed directly
-if (require.main === module) {
+if (import.meta.url === `file://${process.argv[1]}`) {
   runErrorHandlingDemo().catch(console.error);
 }

@@ -1,15 +1,15 @@
-const { Request: UreqRequest } = require('@ureq/core');
-const { FetchRequestor } = require('@ureq/impl-fetch');
-const { MemoryCacheStore } = require('@ureq/business');
+import { Request as UreqRequestFeatures } from '@ureq/core';
+import { FetchRequestor as FetchRequestorFeatures } from '@ureq/impl-fetch';
+import { MemoryCacheStore as MemoryCacheStoreFeatures } from '@ureq/business';
 
-const MOCK_API_BASE = 'https://jsonplaceholder.typicode.com';
+const MOCK_API_BASE_FEATURES = 'https://jsonplaceholder.typicode.com';
 
 async function runFeaturesDemo() {
   console.log('⚡ Advanced Features Demo\n');
 
   // Demo 1: Timeout Feature
   console.log('⏱️  Timeout Feature Demo:');
-  const timeoutRequest = new UreqRequest(new FetchRequestor({ baseURL: MOCK_API_BASE }), {
+  const timeoutRequest = new UreqRequestFeatures(new FetchRequestorFeatures({ baseURL: MOCK_API_BASE_FEATURES }), {
     timeout: 5000 // 5 seconds timeout
   });
 
@@ -23,7 +23,7 @@ async function runFeaturesDemo() {
 
   // Demo 2: Retry Feature
   console.log('\n🔄 Retry Feature Demo:');
-  const retryRequest = new UreqRequest(new FetchRequestor({ baseURL: MOCK_API_BASE }), {
+  const retryRequest = new UreqRequestFeatures(new FetchRequestorFeatures({ baseURL: MOCK_API_BASE_FEATURES }), {
     retry: {
       maxRetries: 3,
       retryDelay: 1000,
@@ -41,10 +41,10 @@ async function runFeaturesDemo() {
 
   // Demo 3: Cache Feature
   console.log('\n💾 Cache Feature Demo:');
-  const cacheRequest = new UreqRequest(new FetchRequestor({ baseURL: MOCK_API_BASE }), {
+  const cacheRequest = new UreqRequestFeatures(new FetchRequestorFeatures({ baseURL: MOCK_API_BASE_FEATURES }), {
     cache: {
       ttl: 60000, // 1 minute cache
-      store: new MemoryCacheStore(),
+      store: new MemoryCacheStoreFeatures(),
       getCacheKey: (url: any, options: any) => `${url}-${JSON.stringify(options)}`
     }
   });
@@ -68,7 +68,7 @@ async function runFeaturesDemo() {
 
   // Demo 4: Parallel Requests Feature
   console.log('\n🔀 Parallel Requests Demo:');
-  const parallelRequest = new UreqRequest(new FetchRequestor({ baseURL: MOCK_API_BASE }), {
+  const parallelRequest = new UreqRequestFeatures(new FetchRequestorFeatures({ baseURL: MOCK_API_BASE_FEATURES }), {
     parallel: {
       maxConcurrent: 3
     }
@@ -84,7 +84,7 @@ async function runFeaturesDemo() {
       parallelRequest.get('/posts/4'),
       parallelRequest.get('/posts/5')
     ];
-    
+
     const results = await Promise.all(promises);
     const time = Date.now() - start;
     console.log(`  ✅ All ${results.length} requests completed in ${time}ms`);
@@ -95,7 +95,7 @@ async function runFeaturesDemo() {
 
   // Demo 5: Idempotent Requests Feature
   console.log('\n🔒 Idempotent Requests Demo:');
-  const idempotentRequest = new UreqRequest(new FetchRequestor({ baseURL: MOCK_API_BASE }), {
+  const idempotentRequest = new UreqRequestFeatures(new FetchRequestorFeatures({ baseURL: MOCK_API_BASE_FEATURES }), {
     idempotent: {
       dedupeTime: 2000 // 2 seconds deduplication window
     }
@@ -124,10 +124,10 @@ async function runFeaturesDemo() {
 
   // Demo 6: Combined Features
   console.log('\n🎯 Combined Features Demo:');
-  const combinedRequest = new UreqRequest(new FetchRequestor({ baseURL: MOCK_API_BASE }), {
+  const combinedRequest = new UreqRequestFeatures(new FetchRequestorFeatures({ baseURL: MOCK_API_BASE_FEATURES }), {
     timeout: 10000,
     retry: { maxRetries: 2, retryDelay: 500 },
-    cache: { ttl: 30000, store: new MemoryCacheStore() },
+    cache: { ttl: 30000, store: new MemoryCacheStoreFeatures() },
     idempotent: { dedupeTime: 1000 }
   });
 
@@ -142,9 +142,9 @@ async function runFeaturesDemo() {
   console.log('\n✅ Features demo completed!\n');
 }
 
-module.exports = { runFeaturesDemo };
+export { runFeaturesDemo };
 
 // Run the demo if this file is executed directly
-if (require.main === module) {
+if (import.meta.url === `file://${process.argv[1]}`) {
   runFeaturesDemo().catch(console.error);
 }

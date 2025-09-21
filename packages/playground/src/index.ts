@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-const { runBasicDemo } = require('./demos/basic');
-const { runFeaturesDemo } = require('./demos/features');
-const { runInterceptorsDemo } = require('./demos/interceptors');
-const { runErrorHandlingDemo } = require('./demos/error-handling');
+import { runBasicDemo } from './demos/basic';
+import { runFeaturesDemo } from './demos/features';
+import { runInterceptorsDemo } from './demos/interceptors';
+import { runErrorHandlingDemo } from './demos/error-handling';
 
 async function main() {
   console.log('🚀 @ureq Playground - HTTP Request Library Demo\n');
