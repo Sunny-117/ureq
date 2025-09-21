@@ -17,6 +17,61 @@ export interface RequestError extends Error {
   status?: number;
   code?: string;
   data?: any;
+  url?: string;
+  method?: string;
+  timestamp?: number;
+  retryCount?: number;
+  isTimeout?: boolean;
+  isNetworkError?: boolean;
+  isAborted?: boolean;
+}
+
+export class UreqError extends Error implements RequestError {
+  status?: number;
+  code?: string;
+  data?: any;
+  url?: string;
+  method?: string;
+  timestamp: number;
+  retryCount?: number;
+  isTimeout?: boolean;
+  isNetworkError?: boolean;
+  isAborted?: boolean;
+
+  constructor(message: string, options: Partial<RequestError> = {}) {
+    super(message);
+    this.name = 'UreqError';
+    this.timestamp = Date.now();
+    Object.assign(this, options);
+  }
+}
+
+export class NetworkError extends UreqError {
+  constructor(message: string, options: Partial<RequestError> = {}) {
+    super(message, { ...options, isNetworkError: true });
+    this.name = 'NetworkError';
+  }
+}
+
+export class TimeoutError extends UreqError {
+  constructor(message: string, options: Partial<RequestError> = {}) {
+    super(message, { ...options, isTimeout: true });
+    this.name = 'TimeoutError';
+  }
+}
+
+export class AbortError extends UreqError {
+  constructor(message: string, options: Partial<RequestError> = {}) {
+    super(message, { ...options, isAborted: true });
+    this.name = 'AbortError';
+  }
+}
+
+export class HttpError extends UreqError {
+  constructor(message: string, status: number, options: Partial<RequestError> = {}) {
+    super(message, { ...options, status });
+    this.name = 'HttpError';
+  }
 }
 
 export interface Requestor {

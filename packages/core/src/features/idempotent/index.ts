@@ -1,5 +1,5 @@
 import { Requestor, RequestOptions, Response } from '../../interfaces/request';
-import { generateHash } from '@ureq/lib-hash';
+import { HashService, DefaultHashService } from '@ureq/business';
 
 interface PendingRequest<T> {
   promise: Promise<Response<T>>;
@@ -11,13 +11,18 @@ export interface IdempotentOptions {
   dedupeTime?: number;
   // 自定义请求标识生成函数
   getRequestId?: (method: string, url: string, data?: any, options?: RequestOptions) => string;
+  // Hash service for generating request IDs
+  hashService?: HashService;
 }
+
+const defaultHashService = new DefaultHashService();
 
 const defaultOptions: Required<IdempotentOptions> = {
   dedupeTime: 1000,
   getRequestId: (method: string, url: string, data?: any, options?: RequestOptions) => {
-    return generateHash(`${method}:${url}:${JSON.stringify(data)}:${JSON.stringify(options)}`);
+    return defaultHashService.generateRequestHash(method, url, data, options);
   },
+  hashService: defaultHashService,
 };
 
 export function createIdempotentRequestor(

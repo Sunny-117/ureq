@@ -74,5 +74,17 @@ export class Request {
     return this.request('POST', url, data, options);
   }
 
+  put<T>(url: string, data?: any, options?: RequestOptions): Promise<T> {
+    return this.request('PUT', url, data, options);
+  }
+
+  delete<T>(url: string, options?: RequestOptions): Promise<T> {
+    return this.request('DELETE', url, undefined, options);
+  }
+
+  patch<T>(url: string, data?: any, options?: RequestOptions): Promise<T> {
+    return this.request('PATCH', url, data, options);
+  }
+
   // 实现其他方法...
 } 

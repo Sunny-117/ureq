@@ -6,10 +6,17 @@
     "composite": true,
     "declaration": true,
     "declarationMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "@ureq/*": ["../../packages/*/src"]
+    }
   },
   "references": [
     {
-      "path": "../business"
+      "path": "../lib-cache-store"
+    },
+    {
+      "path": "../lib-hash"
     }
   ]
 }

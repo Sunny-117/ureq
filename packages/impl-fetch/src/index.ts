@@ -1,4 +1,4 @@
-import { Requestor, RequestOptions, Response, RequestError } from '@ureq/core';
+import { Requestor, RequestOptions, Response, RequestError, createRequestError } from '@ureq/core';
 
 export interface FetchRequestorOptions {
   baseURL?: string;
@@ -35,12 +35,8 @@ export class FetchRequestor implements Requestor {
     };
   }
 
-  private handleError(error: any): never {
-    const requestError: RequestError = new Error(error.message);
-    if (error instanceof globalThis.Response) {
-      requestError.status = error.status;
-    }
-    throw requestError;
+  private handleError(error: any, method?: string, url?: string): never {
+    throw createRequestError(error, { method, url });
   }
 
   private createRequestInit(
@@ -64,86 +60,91 @@ export class FetchRequestor implements Requestor {
 
   async get<T>(url: string, options?: RequestOptions): Promise<Response<T>> {
     try {
+      const fullUrl = this.getFullURL(url);
       const response = await fetch(
-        this.getFullURL(url),
+        fullUrl,
         this.createRequestInit('GET', undefined, options)
       );
-      
+
       if (!response.ok) {
         throw response;
       }
-      
+
       return this.convertResponse(response);
     } catch (error) {
-      this.handleError(error);
+      this.handleError(error, 'GET', url);
     }
   }
 
   async post<T>(url: string, data?: any, options?: RequestOptions): Promise<Response<T>> {
     try {
+      const fullUrl = this.getFullURL(url);
       const response = await fetch(
-        this.getFullURL(url),
+        fullUrl,
         this.createRequestInit('POST', data, options)
       );
-      
+
       if (!response.ok) {
         throw response;
       }
-      
+
       return this.convertResponse(response);
     } catch (error) {
-      this.handleError(error);
+      this.handleError(error, 'POST', url);
     }
   }
 
   async put<T>(url: string, data?: any, options?: RequestOptions): Promise<Response<T>> {
     try {
+      const fullUrl = this.getFullURL(url);
       const response = await fetch(
-        this.getFullURL(url),
+        fullUrl,
         this.createRequestInit('PUT', data, options)
       );
-      
+
       if (!response.ok) {
         throw response;
       }
-      
+
       return this.convertResponse(response);
     } catch (error) {
-      this.handleError(error);
+      this.handleError(error, 'PUT', url);
     }
   }
 
   async delete<T>(url: string, options?: RequestOptions): Promise<Response<T>> {
     try {
+      const fullUrl = this.getFullURL(url);
       const response = await fetch(
-        this.getFullURL(url),
+        fullUrl,
         this.createRequestInit('DELETE', undefined, options)
       );
-      
+
       if (!response.ok) {
         throw response;
       }
-      
+
       return this.convertResponse(response);
     } catch (error) {
-      this.handleError(error);
+      this.handleError(error, 'DELETE', url);
     }
   }
 
   async patch<T>(url: string, data?: any, options?: RequestOptions): Promise<Response<T>> {
     try {
+      const fullUrl = this.getFullURL(url);
       const response = await fetch(
-        this.getFullURL(url),
+        fullUrl,
         this.createRequestInit('PATCH', data, options)
       );
-      
+
       if (!response.ok) {
         throw response;
       }
-      
+
       return this.convertResponse(response);
     } catch (error) {
-      this.handleError(error);
+      this.handleError(error, 'PATCH', url);
     }
   }
 

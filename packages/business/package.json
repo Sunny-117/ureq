@@ -1,12 +1,11 @@
 {
-  "name": "@ureq/core",
+  "name": "@ureq/business",
   "version": "0.0.1",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist",
-    "README.md"
+    "dist"
   ],
   "scripts": {
     "build": "tsup --config tsup.config.ts",
@@ -14,7 +13,8 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@ureq/business": "workspace:*"
+    "@ureq/lib-cache-store": "workspace:*",
+    "@ureq/lib-hash": "workspace:*"
   },
   "devDependencies": {
     "tsup": "^8.3.6",

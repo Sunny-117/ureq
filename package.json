@@ -13,7 +13,9 @@
     "format": "prettier --write \"**/*.{ts,md,json}\"",
     "docs:dev": "pnpm --filter @ureqdocs dev",
     "docs:build": "pnpm --filter @ureqdocs build",
-    "docs:preview": "pnpm --filter @ureqdocs preview"
+    "docs:preview": "pnpm --filter @ureqdocs preview",
+    "playground": "pnpm --filter @ureq/playground dev",
+    "playground:demo": "pnpm --filter @ureq/playground demo:all"
   },
   "devDependencies": {
     "@changesets/cli": "^2.28.1",

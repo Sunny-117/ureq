@@ -1,0 +1,29 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "include": ["src/**/*"],
+  "compilerOptions": {
+    "outDir": "dist",
+    "baseUrl": ".",
+    "paths": {
+      "@ureq/*": ["../../packages/*/src"]
+    },
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
+  },
+  "references": [
+    {
+      "path": "../core"
+    },
+    {
+      "path": "../impl-fetch"
+    },
+    {
+      "path": "../impl-axios"
+    },
+    {
+      "path": "../business"
+    }
+  ]
+}

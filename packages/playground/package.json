@@ -1,0 +1,27 @@
+{
+  "name": "@ureq/playground",
+  "version": "0.0.1",
+  "private": true,
+
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "build": "tsup",
+    "demo:basic": "tsx src/demos/basic.ts",
+    "demo:features": "tsx src/demos/features.ts",
+    "demo:interceptors": "tsx src/demos/interceptors.ts",
+    "demo:error-handling": "tsx src/demos/error-handling.ts",
+    "demo:all": "npm run demo:basic && npm run demo:features && npm run demo:interceptors && npm run demo:error-handling"
+  },
+  "dependencies": {
+    "@ureq/core": "workspace:*",
+    "@ureq/impl-fetch": "workspace:*",
+    "@ureq/impl-axios": "workspace:*",
+    "@ureq/business": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsup": "^8.3.6",
+    "tsx": "^4.0.0",
+    "typescript": "^5.7.3"
+  }
+}

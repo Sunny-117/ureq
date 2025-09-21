@@ -1,5 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig, ResponseType } from 'axios';
-import { Requestor, RequestOptions, Response, RequestError } from '@ureq/core';
+import { Requestor, RequestOptions, Response, createRequestError } from '@ureq/core';
 
 export interface AxiosRequestorOptions {
   baseURL?: string;
@@ -36,12 +36,8 @@ export class AxiosRequestor implements Requestor {
     };
   }
 
-  private handleError(error: any): never {
-    const requestError: RequestError = new Error(error.message);
-    requestError.status = error.response?.status;
-    requestError.code = error.code;
-    requestError.data = error.response?.data;
-    throw requestError;
+  private handleError(error: any, method?: string, url?: string): never {
+    throw createRequestError(error, { method, url });
   }
 
   async get<T>(url: string, options?: RequestOptions): Promise<Response<T>> {
@@ -49,7 +45,7 @@ export class AxiosRequestor implements Requestor {
       const response = await this.instance.get(url, this.convertOptions(options));
       return this.convertResponse(response);
     } catch (error) {
-      this.handleError(error);
+      this.handleError(error, 'GET', url);
     }
   }
 
@@ -58,7 +54,7 @@ export class AxiosRequestor implements Requestor {
       const response = await this.instance.post(url, data, this.convertOptions(options));
       return this.convertResponse(response);
     } catch (error) {
-      this.handleError(error);
+      this.handleError(error, 'POST', url);
     }
   }
 
@@ -67,7 +63,7 @@ export class AxiosRequestor implements Requestor {
       const response = await this.instance.put(url, data, this.convertOptions(options));
       return this.convertResponse(response);
     } catch (error) {
-      this.handleError(error);
+      this.handleError(error, 'PUT', url);
     }
   }
 
@@ -76,7 +72,7 @@ export class AxiosRequestor implements Requestor {
       const response = await this.instance.delete(url, this.convertOptions(options));
       return this.convertResponse(response);
     } catch (error) {
-      this.handleError(error);
+      this.handleError(error, 'DELETE', url);
     }
   }
 
@@ -85,7 +81,7 @@ export class AxiosRequestor implements Requestor {
       const response = await this.instance.patch(url, data, this.convertOptions(options));
       return this.convertResponse(response);
     } catch (error) {
-      this.handleError(error);
+      this.handleError(error, 'PATCH', url);
     }
   }
 } 

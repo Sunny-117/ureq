@@ -1,15 +1,15 @@
 import { Requestor, RequestOptions, Response } from '../../interfaces/request';
-import { MemoryStore } from '@ureq/lib-cache-store';
+import { CacheStore, MemoryCacheStore } from '@ureq/business';
 
 export interface CacheOptions {
   ttl?: number;
-  store?: MemoryStore;
+  store?: CacheStore;
   getCacheKey?: (url: string, options?: RequestOptions) => string;
 }
 
 const defaultCacheOptions: Required<CacheOptions> = {
   ttl: 5 * 60 * 1000, // 5 minutes
-  store: new MemoryStore(),
+  store: new MemoryCacheStore(),
   getCacheKey: (url: string, options?: RequestOptions) => {
     return `${url}${options ? JSON.stringify(options) : ''}`;
   },
@@ -25,13 +25,13 @@ export function createCacheRequestor(
     key: string,
     request: () => Promise<Response<T>>
   ): Promise<Response<T>> {
-    const cached = finalOptions.store.get<Response<T>>(key);
+    const cached = await finalOptions.store.get<Response<T>>(key);
     if (cached) {
       return cached;
     }
 
     const response = await request();
-    finalOptions.store.set(key, response, finalOptions.ttl);
+    await finalOptions.store.set(key, response, finalOptions.ttl);
     return response;
   }
 

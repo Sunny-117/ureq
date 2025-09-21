@@ -1,4 +1,5 @@
 import { Requestor, RequestOptions, Response, RequestError } from '../../interfaces/request';
+import { isRetryableError } from '../../utils/error';
 
 export interface RetryOptions {
   maxRetries?: number;
@@ -9,7 +10,7 @@ export interface RetryOptions {
 const defaultRetryOptions: Required<RetryOptions> = {
   maxRetries: 3,
   retryDelay: 1000,
-  shouldRetry: (error: RequestError) => error.status ? error.status >= 500 : true,
+  shouldRetry: (error: RequestError) => isRetryableError(error),
 };
 
 export function createRetryRequestor(
@@ -25,10 +26,14 @@ export function createRetryRequestor(
     try {
       return await request();
     } catch (error) {
-      const shouldRetry = await finalOptions.shouldRetry(error as RequestError);
-      
+      const requestError = error as RequestError;
+      // Update retry count in error
+      requestError.retryCount = retries;
+
+      const shouldRetry = await finalOptions.shouldRetry(requestError);
+
       if (!shouldRetry || retries >= finalOptions.maxRetries) {
-        throw error;
+        throw requestError;
       }
 
       await new Promise(resolve => setTimeout(resolve, finalOptions.retryDelay));
