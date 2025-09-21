@@ -1,5 +1,5 @@
 import { Requestor, RequestOptions, Response } from '../../interfaces/request';
-import { HashService, DefaultHashService } from '@ureq/business';
+import { HashService, DefaultHashService } from '../../interfaces/hash';
 
 interface PendingRequest<T> {
   promise: Promise<Response<T>>;

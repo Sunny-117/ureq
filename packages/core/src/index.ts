@@ -1,4 +1,6 @@
 export * from './interfaces/request';
+export * from './interfaces/cache';
+export * from './interfaces/hash';
 export * from './interceptor';
 export * from './request';
 export * from './features/retry';

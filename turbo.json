@@ -1,0 +1,60 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "ui": "tui",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["src/**/*.ts", "src/**/*.tsx", "tsconfig.json", "tsup.config.ts"],
+      "outputs": ["dist/**"],
+      "cache": true
+    },
+    "dev": {
+      "dependsOn": ["^build"],
+      "cache": false,
+      "persistent": true
+    },
+    "test": {
+      "dependsOn": ["build"],
+      "inputs": ["src/**/*.ts", "src/**/*.test.ts", "src/**/*.spec.ts"],
+      "cache": true
+    },
+    "lint": {
+      "inputs": ["src/**/*.ts", "src/**/*.tsx", ".eslintrc.js", "eslint.config.js"],
+      "cache": true
+    },
+    "format": {
+      "inputs": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.md", "src/**/*.json"],
+      "cache": true
+    },
+    "clean": {
+      "cache": false
+    },
+    "demo:basic": {
+      "dependsOn": ["build"],
+      "cache": false
+    },
+    "demo:features": {
+      "dependsOn": ["build"],
+      "cache": false
+    },
+    "demo:interceptors": {
+      "dependsOn": ["build"],
+      "cache": false
+    },
+    "demo:error-handling": {
+      "dependsOn": ["build"],
+      "cache": false
+    },
+    "demo:all": {
+      "dependsOn": ["build"],
+      "cache": false
+    }
+  },
+  "globalDependencies": [
+    "package.json",
+    "pnpm-lock.yaml",
+    "pnpm-workspace.yaml",
+    "tsconfig.base.json",
+    "scripts/**"
+  ]
+}

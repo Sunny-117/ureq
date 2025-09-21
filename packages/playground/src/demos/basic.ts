@@ -1,6 +1,6 @@
-import { Request as UreqRequest } from '../../../core/dist/index.mjs';
-import { FetchRequestor } from '../../../impl-fetch/dist/index.mjs';
-import { AxiosRequestor } from '../../../impl-axios/dist/index.mjs';
+import { Request as UreqRequest } from '@ureq/core';
+import { FetchRequestor } from '@ureq/impl-fetch';
+import { AxiosRequestor } from '@ureq/impl-axios';
 
 // Mock API endpoints for demonstration
 const MOCK_API_BASE_BASIC = 'https://jsonplaceholder.typicode.com';

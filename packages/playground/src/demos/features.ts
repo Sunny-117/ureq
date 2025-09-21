@@ -1,6 +1,6 @@
 import { Request as UreqRequestFeatures } from '@ureq/core';
 import { FetchRequestor as FetchRequestorFeatures } from '@ureq/impl-fetch';
-import { MemoryCacheStore as MemoryCacheStoreFeatures } from '@ureq/business';
+import { MemoryCacheStore as MemoryCacheStoreFeatures } from '@ureq/core';
 
 const MOCK_API_BASE_FEATURES = 'https://jsonplaceholder.typicode.com';
 
