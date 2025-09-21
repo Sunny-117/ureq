@@ -5,12 +5,11 @@
   "type": "module",
 
   "scripts": {
-    "dev": "tsx src/index.ts",
     "build": "tsup",
-    "demo:basic": "tsx src/demos/basic.ts",
-    "demo:features": "tsx src/demos/features.ts",
-    "demo:interceptors": "tsx src/demos/interceptors.ts",
-    "demo:error-handling": "tsx src/demos/error-handling.ts",
+    "demo:basic": "node dist/demos/basic.js",
+    "demo:features": "node dist/demos/features.js",
+    "demo:interceptors": "node dist/demos/interceptors.js",
+    "demo:error-handling": "node dist/demos/error-handling.js",
     "demo:all": "npm run demo:basic && npm run demo:features && npm run demo:interceptors && npm run demo:error-handling"
   },
   "dependencies": {
