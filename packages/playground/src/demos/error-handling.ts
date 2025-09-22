@@ -101,7 +101,7 @@ async function runErrorHandlingDemo() {
   try {
     console.log('  Making request that will trigger error interceptor...');
     await interceptorRequest.get('/posts/999999');
-  } catch (error) {
+  } catch (error: any) {
     console.log('  ✅ Error interceptor processed the error:');
     console.log('    🏷️  Error metadata:', (error as any).metadata);
   }
@@ -115,7 +115,7 @@ async function runErrorHandlingDemo() {
     try {
       console.log(`    🎯 Trying primary request: ${url}`);
       return await primaryRequest.get(url);
-    } catch (primaryError) {
+    } catch (primaryError: any) {
       console.log('    ⚠️  Primary request failed, trying fallback...');
       
       try {
@@ -127,7 +127,7 @@ async function runErrorHandlingDemo() {
           _fallback: true,
           _originalUrl: url
         };
-      } catch (fallbackError) {
+      } catch (fallbackError: any) {
         console.log('    ❌ Fallback also failed');
         throw new Error(`Both primary and fallback requests failed: ${primaryError.message}`);
       }
@@ -141,7 +141,7 @@ async function runErrorHandlingDemo() {
     console.log('    📊 Data ID:', result.id);
     console.log('    🔄 Used fallback:', result._fallback);
     console.log('    📝 Original URL:', result._originalUrl);
-  } catch (error) {
+  } catch (error: any) {
     console.log('  ❌ Graceful handling failed:', error.message);
   }
 
@@ -153,7 +153,7 @@ async function runErrorHandlingDemo() {
   console.log('  Fetch implementation error:');
   try {
     await fetchRequest.get('/posts/999999');
-  } catch (error) {
+  } catch (error: any) {
     console.log('    📝 Type:', error.constructor.name);
     console.log('    📊 Status:', (error as any).status);
   }
@@ -161,7 +161,7 @@ async function runErrorHandlingDemo() {
   console.log('  Axios implementation error:');
   try {
     await axiosRequest.get('/posts/999999');
-  } catch (error) {
+  } catch (error: any) {
     console.log('    📝 Type:', error.constructor.name);
     console.log('    📊 Status:', (error as any).status);
   }
