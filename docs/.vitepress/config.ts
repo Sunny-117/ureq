@@ -14,8 +14,8 @@ export default defineConfig({
       { 
         text: '更多 | More',
         items: [
-          { text: 'Changelog', link: 'https://github.com/your-username/request/blob/main/CHANGELOG.md' },
-          { text: 'Contributing', link: 'https://github.com/your-username/request/blob/main/CONTRIBUTING.md' }
+          { text: 'Changelog', link: 'https://github.com/Sunny-117/request/blob/main/CHANGELOG.md' },
+          { text: 'Contributing', link: 'https://github.com/Sunny-117/request/blob/main/CONTRIBUTING.md' }
         ]
       }
     ],
@@ -66,7 +66,7 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/your-username/request' }
+      { icon: 'github', link: 'https://github.com/Sunny-117/request' }
     ]
   }
 }) 

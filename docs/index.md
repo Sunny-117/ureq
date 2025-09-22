@@ -14,7 +14,7 @@ hero:
       link: /guide/getting-started
     - theme: alt
       text: 在 GitHub 上查看 | View on GitHub
-      link: https://github.com/your-username/request
+      link: https://github.com/Sunny-117/request
 
 features:
   - icon: 🚀

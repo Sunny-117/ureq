@@ -2,15 +2,13 @@
   "name": "@ureq/docs",
   "version": "0.0.1",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "vitepress dev",
     "build": "vitepress build",
     "preview": "vitepress preview"
   },
   "devDependencies": {
-    "vitepress": "^1.0.0",
-    "@ureq/core": "workspace:*",
-    "@ureq/impl-fetch": "workspace:*",
-    "@ureq/impl-axios": "workspace:*"
+    "vitepress": "^1.6.3"
   }
 }
