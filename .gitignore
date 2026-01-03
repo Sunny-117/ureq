@@ -10,3 +10,4 @@ coverage
 *.log
 .turbo
 .cache
+docs/.vitepress/cache
