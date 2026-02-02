@@ -1,0 +1,1 @@
+import{_ as s,c as a,o as l,ag as e}from"./chunks/framework.Dqb2q1bT.js";const E=JSON.parse('{"title":"@ureq 文档","description":"","frontmatter":{},"headers":[],"relativePath":"README.md","filePath":"README.md"}'),t={name:"README.md"};function n(h,i,r,p,k,o){return l(),a("div",null,i[0]||(i[0]=[e("",25)]))}const u=s(t,[["render",n]]);export{E as __pageData,u as default};
