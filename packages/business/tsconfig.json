@@ -1,0 +1,22 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "include": ["src/**/*"],
+  "compilerOptions": {
+    "outDir": "dist",
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "@ureq/*": ["../../packages/*/src"]
+    }
+  },
+  "references": [
+    {
+      "path": "../lib-cache-store"
+    },
+    {
+      "path": "../lib-hash"
+    }
+  ]
+}

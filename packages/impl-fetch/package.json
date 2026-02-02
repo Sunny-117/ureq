@@ -1,0 +1,33 @@
+{
+  "name": "@ureq/impl-fetch",
+  "version": "0.0.3",
+  "description": "Fetch implementation for universal request library",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsup --config tsup.config.ts",
+    "dev": "tsup --watch",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@ureq/core": "workspace:*"
+  },
+  "devDependencies": {
+    "tsup": "^8.3.6",
+    "typescript": "^5.7.3"
+  }
+}

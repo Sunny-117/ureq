@@ -1,0 +1,39 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景圆形 -->
+  <circle cx="100" cy="100" r="95" fill="url(#gradient)" stroke="#4a148c" stroke-width="3"/>
+  
+  <!-- 渐变定义 -->
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7c4dff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#536dfe;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- U 字母 - 代表 Universal -->
+  <path d="M 60 50 L 60 100 Q 60 130 80 130 L 120 130 Q 140 130 140 100 L 140 50" 
+        stroke="white" 
+        stroke-width="12" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"
+        fill="none"/>
+  
+  <!-- 箭头 - 代表 Request -->
+  <g transform="translate(100, 140)">
+    <!-- 箭头主体 -->
+    <line x1="-30" y1="0" x2="30" y2="0" stroke="white" stroke-width="8" stroke-linecap="round"/>
+    <!-- 箭头头部 -->
+    <polyline points="20,-10 30,0 20,10" 
+              stroke="white" 
+              stroke-width="8" 
+              stroke-linecap="round" 
+              stroke-linejoin="round"
+              fill="none"/>
+  </g>
+  
+  <!-- 装饰性圆点 - 代表模块化 -->
+  <circle cx="45" cy="45" r="4" fill="white" opacity="0.6"/>
+  <circle cx="155" cy="45" r="4" fill="white" opacity="0.6"/>
+  <circle cx="45" cy="155" r="4" fill="white" opacity="0.6"/>
+  <circle cx="155" cy="155" r="4" fill="white" opacity="0.6"/>
+</svg>

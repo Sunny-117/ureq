@@ -1,115 +1,210 @@
-<h1 align="center">Welcome to mini-vite 👋</h1>
-<p>
-  <a href="https://www.npmjs.com/package/mini-vite" target="_blank">
-    <img alt="Version" src="https://img.shields.io/npm/v/mini-vite.svg">
-  </a>
-  <a href="https://sunny-117.github.io/mini-vite" target="_blank">
-    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
-  </a>
-  <a href="#" target="_blank">
-    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
-  </a>
-</p>
+# @ureq - Universal HTTP Request Library
 
-> 下一代的前端工具链 Vite 核心逻辑
+[![npm version](https://badge.fury.io/js/@ureq%2Fcore.svg)](https://badge.fury.io/js/@ureq%2Fcore)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
 
-### 🏠 [Homepage](https://github.com/Sunny-117/mini-vite)
+> 名字由来：Universal Request的简写，发音类似"you-request"
 
-## mini-vite 请求处理流程图
+A modern, modular, and extensible HTTP request library for JavaScript/TypeScript applications. Built with a clean architecture that supports multiple HTTP implementations and advanced features like caching, retries, interceptors, and more.
 
-![](/req.png)
+## 🏗️ Architecture Overview
 
-## mini-vite 核心代码逻辑
+```mermaid
+graph TB
+    %% User Entry Points
+    User[👤 User Application]
 
-```js
+    %% Core Packages
+    Core["@ureq/core<br/>🎯 Main Request Engine<br/>• Request class<br/>• Interceptors<br/>• Error handling<br/>• Feature composition"]
 
-// server.js
-const Koa = require("koa");
-const app = new Koa();
+    %% Implementation Packages
+    ImplFetch["@ureq/impl-fetch<br/>🌐 Fetch Implementation<br/>• Native fetch API<br/>• Browser & Node.js<br/>• Lightweight"]
 
-const fs = require("fs");
-const path = require("path");
+    ImplAxios["@ureq/impl-axios<br/>📡 Axios Implementation<br/>• Axios adapter<br/>• Rich features<br/>• Legacy support"]
 
-const { parse } = require("@vue/compiler-sfc");
-const { compile } = require("@vue/compiler-dom");
+    %% Business Layer
+    Business["@ureq/business<br/>🏢 Business Abstractions<br/>• HashService interface<br/>• CacheStore interface<br/>• Default implementations"]
 
-function rewriteImport(content) {
-  return content
-    .replace(/(from\s+['"])(?![\.\/])/g, "$1/@modules/")
-    .replace(/process\.env\.NODE_ENV/g, '"development"');
-}
+    %% Utility Libraries
+    LibHash["@ureq/lib-hash<br/>🔐 Hash Utilities<br/>• Request hashing<br/>• String hashing<br/>• Deduplication"]
 
-app.use(async (ctx) => {
-  // ctx.body = 'kkb vite'
-  const url = ctx.request.url;
-  if (url === "/") {
-    ctx.type = "text/html";
-    console.log(ctx.path)
-    ctx.body = fs.readFileSync("./index.html", "utf-8");
-  } else if (url.endsWith(".js")) {
-    const p = path.resolve(__dirname, url.slice(1));
-    ctx.type = "text/javascript";
-    const ret = fs.readFileSync(p, "utf-8");
-    ctx.body = rewriteImport(ret);
-  } else if (url.startsWith("/@modules")) {
-    const moduleName = url.replace("/@modules/", "");
-    const prefix = path.resolve(__dirname, "node_modules", moduleName);
-    const module = require(prefix + "/package.json").module;
-    const filePath = path.join(prefix, module);
-    const ret = fs.readFileSync(filePath, "utf8");
-    ctx.type = "text/javascript";
-    ctx.body = rewriteImport(ret);
-  } else if (url.endsWith(".vue")) {
-    // 解析单文件组件相当于vue-loader做的事情
-    // 转换script部分：将默认导出的组件对象转换为常量
-    const p = path.resolve(__dirname, url.slice(1));
-    const ret = parse(fs.readFileSync(p, "utf-8"));
-    const scriptContent = ret.descriptor.script.content;
-    const script = scriptContent.replace(
-      "export default ",
-      "const __script = "
-    );
+    LibCache["@ureq/lib-cache-store<br/>💾 Cache Storage<br/>• Memory store<br/>• TTL support<br/>• Storage interface"]
 
-    // 转换template为模板请求
-    // 将转换获得的渲染函数设置到__script上
-    // 最后重新导出__script
-    ctx.type = "text/javascript";
+    %% Development & Demo
+    Playground["@ureq/playground<br/>🎮 Demo & Testing<br/>• Usage examples<br/>• Feature demos<br/>• Development testing"]
 
-    //  如果我在这一步就对 url 做解析会怎么样？
-    // 因为使用 compile 得到的 render 并不是只有一个 render 函数，还有其中的导入依赖的代码逻辑
-    // 不方便直接拼到 __script.render = 上，  所以在利用一个请求单独来处理
+    Docs["@ureq/docs<br/>📚 Documentation<br/>• VitePress docs<br/>• API reference<br/>• Usage guides"]
 
-    ctx.body = `
-      ${rewriteImport(script)}
-      import { render as __render } from '${url}?type=template'
-      __script.render = __render
-      export default __script
-    `;
-  } else if (url.endsWith("?type=template")) {
-    // 模板编译请求
-    const p = path.resolve(__dirname, url.split("?")[0].slice(1));
-    const ret = parse(fs.readFileSync(p, "utf-8"));
-    const template = ret.descriptor.template.content;
-    // 使用编译该模板
-    const render = compile(template, { mode: "module" }).code;
-    ctx.type = "text/javascript";
-    ctx.body = rewriteImport(render);
-  } else if (url.endsWith(".png")) {
-    ctx.body = fs.readFileSync("src" + url);
-  }
-});
+    %% Dependencies
+    User --> Core
+    User --> ImplFetch
+    User --> ImplAxios
 
-app.listen(3000, () => {
-  console.log("vite start");
-});
+    Core --> Business
+    ImplFetch --> Core
+    ImplAxios --> Core
 
+    Business --> LibHash
+    Business --> LibCache
 
+    Playground --> Core
+    Playground --> ImplFetch
+    Playground --> ImplAxios
+    Playground --> Business
+
+    Docs --> Core
+    Docs --> ImplFetch
+    Docs --> ImplAxios
+
+    %% External Dependencies
+    ImplAxios -.-> Axios[axios npm package]
+
+    %% Styling
+    classDef userEntry fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef core fill:#f3e5f5,stroke:#4a148c,stroke-width:3px
+    classDef impl fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
+    classDef business fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef lib fill:#fce4ec,stroke:#880e4f,stroke-width:2px
+    classDef dev fill:#f1f8e9,stroke:#33691e,stroke-width:2px
+    classDef external fill:#f5f5f5,stroke:#616161,stroke-width:1px,stroke-dasharray: 5 5
+
+    class User userEntry
+    class Core core
+    class ImplFetch,ImplAxios impl
+    class Business business
+    class LibHash,LibCache lib
+    class Playground,Docs dev
+    class Axios external
 ```
 
+## 🚀 Quick Start
 
-## Show your support
+### Installation
 
-Give a ⭐️ if this project helped you!
+Choose your preferred HTTP implementation:
 
-***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
+```bash
+# Option 1: Using Fetch (Recommended for modern environments)
+npm install @ureq/core @ureq/impl-fetch
+
+# Option 2: Using Axios (For legacy support or advanced features)
+npm install @ureq/core @ureq/impl-axios
+
+# Option 3: Install both for flexibility
+npm install @ureq/core @ureq/impl-fetch @ureq/impl-axios
+```
+
+### Basic Usage
+
+```typescript
+import { Request } from '@ureq/core';
+import { FetchRequestor } from '@ureq/impl-fetch';
+
+// Create a request instance
+const request = new Request(new FetchRequestor({
+  baseURL: 'https://jsonplaceholder.typicode.com'
+}));
+
+// Make requests
+const user = await request.get('/todos/2');
+const newUser = await request.post('/users', {
+  name: 'John Doe',
+  email: 'john@example.com'
+});
+```
+
+## 📦 Package Overview
+
+### Core Packages (Required)
+
+- **`@ureq/core`** - Main request engine with interceptors, error handling, and feature composition
+- **`@ureq/impl-fetch`** OR **`@ureq/impl-axios`** - Choose your HTTP implementation
+
+### Implementation Packages (Choose One)
+
+- **`@ureq/impl-fetch`** - Lightweight, uses native Fetch API (recommended)
+- **`@ureq/impl-axios`** - Feature-rich, uses Axios library
+
+### Optional Packages
+
+- **`@ureq/business`** - Business layer abstractions (auto-installed with core)
+
+## ✨ Features
+
+- 🎯 **Multiple HTTP Implementations** - Choose between Fetch or Axios
+- 🔄 **Smart Retry Logic** - Configurable retry strategies with exponential backoff
+- 💾 **Built-in Caching** - Memory cache with TTL support
+- 🚦 **Request Interceptors** - Transform requests and responses
+- ⚡ **Parallel Requests** - Concurrent request management
+- 🔒 **Request Deduplication** - Prevent duplicate requests
+- ⏱️ **Timeout Control** - Request timeout management
+- 🛡️ **Error Handling** - Comprehensive error types and handling
+- 📝 **TypeScript Support** - Full type safety and IntelliSense
+- 🎮 **Modular Design** - Use only what you need
+
+## 🛠️ Development
+
+This project uses [Turbo](https://turbo.build/) for fast, parallel builds and [pnpm](https://pnpm.io/) for package management.
+
+### Prerequisites
+
+```bash
+npm install -g pnpm
+```
+
+### Setup
+
+```bash
+# Install dependencies
+pnpm install
+
+# Build all packages
+pnpm build
+
+# Run development mode
+pnpm dev
+```
+
+### Available Scripts
+
+```bash
+# Build all packages in parallel
+pnpm build
+
+# Run tests
+pnpm test
+
+# Lint code
+pnpm lint
+
+# Format code
+pnpm format
+
+# Run playground demos
+pnpm demo:all
+pnpm demo:basic
+pnpm demo:features
+pnpm demo:interceptors
+pnpm demo:error-handling
+
+# Start documentation
+pnpm docs:dev
+```
+
+## 📚 Documentation
+
+Visit our [documentation site](./docs) for detailed guides, API reference, and examples.
+
+## 🎮 Examples
+
+Check out the [playground](./packages/playground) for comprehensive examples of all features.
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guide](./CONTRIBUTING.md) for details.
+
+## 📄 License
+
+MIT © [Your Name](./LICENSE)
+
