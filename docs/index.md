@@ -93,39 +93,88 @@ console.log(data);
 
 ## 为什么选择 @ureq? | Why @ureq?
 
-<div class="why-ureq">
+<div class="why-ureq-grid">
 
-### 🎨 模块化设计
+<div class="why-ureq-card">
+
+#### 🎨 模块化设计 | Modular Design
+
 核心功能与具体实现分离，按需引入所需模块，保持应用轻量。
 
-### 🔧 高度可扩展
-轻松添加自定义请求器、拦截器和功能模块。
-
-### 🚀 开箱即用
-内置常用功能如重试、缓存、超时等，无需额外配置。
-
-### 💪 类型安全
-完整的 TypeScript 支持，享受智能提示和类型检查。
+Separates core functionality from implementation, import only what you need.
 
 </div>
 
-<style>
-.why-ureq {
+<div class="why-ureq-card">
+
+#### 🔧 高度可扩展 | Highly Extensible
+
+轻松添加自定义请求器、拦截器和功能模块。
+
+Easily add custom requestors, interceptors, and feature modules.
+
+</div>
+
+<div class="why-ureq-card">
+
+#### 🚀 开箱即用 | Ready to Use
+
+内置常用功能如重试、缓存、超时等，无需额外配置。
+
+Built-in features like retry, cache, timeout with no extra config.
+
+</div>
+
+<div class="why-ureq-card">
+
+#### 💪 类型安全 | Type Safe
+
+完整的 TypeScript 支持，享受智能提示和类型检查。
+
+Full TypeScript support with intelligent hints and type checking.
+
+</div>
+
+</div>
+
+<style scoped>
+.why-ureq-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1rem;
-  margin-top: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
 }
 
-.why-ureq > div {
-  padding: 1rem;
-  border-radius: 8px;
+.why-ureq-card {
+  padding: 1.5rem;
+  border-radius: 12px;
   background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-border);
+  transition: all 0.3s ease;
 }
 
-.why-ureq h3 {
-  margin-top: 0;
+.why-ureq-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  border-color: var(--vp-c-brand);
+}
+
+.why-ureq-card h4 {
+  margin: 0 0 0.75rem 0;
   font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+}
+
+.why-ureq-card p {
+  margin: 0.5rem 0;
+  line-height: 1.6;
+  font-size: 0.95rem;
+  color: var(--vp-c-text-2);
+}
+
+.why-ureq-card p:last-child {
+  margin-bottom: 0;
 }
 </style>
  

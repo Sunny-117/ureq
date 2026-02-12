@@ -12,7 +12,8 @@
     "demo:error-handling": "node dist/demos/error-handling.js",
     "demo:all": "npm run demo:basic && npm run demo:features && npm run demo:interceptors && npm run demo:error-handling",
     "demo:fetch": "node dist/demos/fetch.js",
-    "demo:response-type": "node dist/demos/response-type.js"
+    "demo:response-type": "node dist/demos/response-type.js",
+    "demo:config-options": "node dist/demos/config-options.js"
   },
   "dependencies": {
     "@ureq/core": "workspace:*",
