@@ -97,6 +97,7 @@ export class Request {
     }
 
     if (config?.idempotent) {
+      // 幂等
       requestor = createIdempotentRequestor(requestor, config.idempotent);
     }
 
