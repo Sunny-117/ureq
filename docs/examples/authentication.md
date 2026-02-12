@@ -10,7 +10,7 @@ import { FetchRequestor } from '@ureq/impl-fetch';
 
 const request = new Request(
   new FetchRequestor({
-    baseURL: 'https://api.example.com'
+    baseURL: 'https://jsonplaceholder.typicode.com/todos/1'
   })
 );
 
@@ -183,7 +183,7 @@ async function handleCallback(code: string) {
 ```typescript
 const request = new Request(
   new FetchRequestor({
-    baseURL: 'https://api.example.com',
+    baseURL: 'https://jsonplaceholder.typicode.com/todos/1',
     headers: {
       'X-API-Key': 'your-api-key'
     }
@@ -223,7 +223,7 @@ class AuthService {
   constructor() {
     this.request = new Request(
       new FetchRequestor({
-        baseURL: 'https://api.example.com'
+        baseURL: 'https://jsonplaceholder.typicode.com/todos/1'
       })
     );
     

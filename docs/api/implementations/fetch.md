@@ -35,7 +35,7 @@ API 基础 URL。
 
 ```typescript
 const requestor = new FetchRequestor({
-  baseURL: 'https://api.example.com'
+  baseURL: 'https://jsonplaceholder.typicode.com/todos/1'
 });
 ```
 
@@ -70,7 +70,7 @@ import { FetchRequestor } from '@ureq/impl-fetch';
 
 const request = new Request(
   new FetchRequestor({
-    baseURL: 'https://api.example.com',
+    baseURL: 'https://jsonplaceholder.typicode.com/todos/1',
     headers: {
       'Content-Type': 'application/json'
     },

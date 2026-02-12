@@ -47,13 +47,13 @@ try {
 ```typescript
 // 快速接口：短超时
 const fastRequest = new Request(
-  new FetchRequestor({ baseURL: 'https://api.example.com' }),
+  new FetchRequestor({ baseURL: 'https://jsonplaceholder.typicode.com/todos/1' }),
   { timeout: { timeout: 3000 } }
 );
 
 // 慢速接口：长超时
 const slowRequest = new Request(
-  new FetchRequestor({ baseURL: 'https://api.example.com' }),
+  new FetchRequestor({ baseURL: 'https://jsonplaceholder.typicode.com/todos/1' }),
   { timeout: { timeout: 30000 } }
 );
 

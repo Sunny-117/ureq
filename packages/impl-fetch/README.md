@@ -17,7 +17,7 @@ import { Request } from '@ureq/core';
 import { FetchRequestor } from '@ureq/impl-fetch';
 
 const request = new Request(new FetchRequestor({
-  baseURL: 'https://api.example.com',
+  baseURL: 'https://jsonplaceholder.typicode.com/todos/1',
   headers: {
     'Content-Type': 'application/json'
   },
@@ -59,7 +59,7 @@ interface FetchRequestorOptions {
 
 ```typescript
 const requestor = new FetchRequestor({
-  baseURL: 'https://api.example.com'
+  baseURL: 'https://jsonplaceholder.typicode.com/todos/1'
 });
 
 const request = new Request(requestor);
@@ -70,7 +70,7 @@ const data = await request.get('/users');
 
 ```typescript
 const requestor = new FetchRequestor({
-  baseURL: 'https://api.example.com',
+  baseURL: 'https://jsonplaceholder.typicode.com/todos/1',
   defaultHeaders: {
     'Authorization': 'Bearer your-token'
   }
@@ -85,7 +85,7 @@ import { FetchRequestor } from '@ureq/impl-fetch';
 
 const request = new Request(
   new FetchRequestor({
-    baseURL: 'https://api.example.com'
+    baseURL: 'https://jsonplaceholder.typicode.com/todos/1'
   }),
   {
     timeout: {

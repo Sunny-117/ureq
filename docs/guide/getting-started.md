@@ -55,24 +55,24 @@ const request = new Request(new FetchRequestor());
 
 ```typescript
 // GET 请求
-const user = await request.get('https://api.example.com/users/1');
+const user = await request.get('https://jsonplaceholder.typicode.com/todos/1/users/1');
 
 // POST 请求
-const newUser = await request.post('https://api.example.com/users', {
+const newUser = await request.post('https://jsonplaceholder.typicode.com/todos/1/users', {
   name: 'John Doe',
   email: 'john@example.com'
 });
 
 // PUT 请求
-const updatedUser = await request.put('https://api.example.com/users/1', {
+const updatedUser = await request.put('https://jsonplaceholder.typicode.com/todos/1/users/1', {
   name: 'Jane Doe'
 });
 
 // DELETE 请求
-await request.delete('https://api.example.com/users/1');
+await request.delete('https://jsonplaceholder.typicode.com/todos/1/users/1');
 
 // PATCH 请求
-const patchedUser = await request.patch('https://api.example.com/users/1', {
+const patchedUser = await request.patch('https://jsonplaceholder.typicode.com/todos/1/users/1', {
   email: 'newemail@example.com'
 });
 ```
@@ -85,7 +85,7 @@ const patchedUser = await request.patch('https://api.example.com/users/1', {
 import { FetchRequestor } from '@ureq/impl-fetch';
 
 const requestor = new FetchRequestor({
-  baseURL: 'https://api.example.com',
+  baseURL: 'https://jsonplaceholder.typicode.com/todos/1',
   headers: {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer your-token'
@@ -104,7 +104,7 @@ import { FetchRequestor } from '@ureq/impl-fetch';
 
 const request = new Request(
   new FetchRequestor({
-    baseURL: 'https://api.example.com'
+    baseURL: 'https://jsonplaceholder.typicode.com/todos/1'
   }),
   {
     // 重试配置
@@ -243,7 +243,7 @@ import { FetchRequestor } from '@ureq/impl-fetch';
 // 创建配置好的请求实例
 const request = new Request(
   new FetchRequestor({
-    baseURL: 'https://api.example.com',
+    baseURL: 'https://jsonplaceholder.typicode.com/todos/1',
     headers: {
       'Content-Type': 'application/json'
     }

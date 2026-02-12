@@ -77,7 +77,7 @@ class SimpleFetchRequestor implements Requestor {
 }
 
 // 使用
-const request = new Request(new SimpleFetchRequestor('https://api.example.com'));
+const request = new Request(new SimpleFetchRequestor('https://jsonplaceholder.typicode.com/todos/1'));
 ```
 
 ## 高级实现
@@ -364,7 +364,7 @@ import { Request } from '@ureq/core';
 // 使用自定义请求器
 const request = new Request(
   new CustomRequestor({
-    baseURL: 'https://api.example.com',
+    baseURL: 'https://jsonplaceholder.typicode.com/todos/1',
     timeout: 10000,
     headers: {
       'X-Custom-Header': 'value'

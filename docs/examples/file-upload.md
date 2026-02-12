@@ -8,7 +8,7 @@ import { FetchRequestor } from '@ureq/impl-fetch';
 
 const request = new Request(
   new FetchRequestor({
-    baseURL: 'https://api.example.com'
+    baseURL: 'https://jsonplaceholder.typicode.com/todos/1'
   }),
   {
     timeout: { timeout: 60000 }  // 60 秒超时
@@ -74,7 +74,7 @@ async function uploadWithMetadata(file: File, metadata: {
 ```typescript
 const uploadRequest = new Request(
   new FetchRequestor({
-    baseURL: 'https://api.example.com'
+    baseURL: 'https://jsonplaceholder.typicode.com/todos/1'
   }),
   {
     retry: {

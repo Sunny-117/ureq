@@ -80,7 +80,7 @@ console.log(user1 === user2);  // true
 ```typescript
 const formRequest = new Request(
   new FetchRequestor({
-    baseURL: 'https://api.example.com'
+    baseURL: 'https://jsonplaceholder.typicode.com/todos/1'
   }),
   {
     idempotent: {

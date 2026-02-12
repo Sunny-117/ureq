@@ -10,7 +10,7 @@
 import { FetchRequestor } from '@ureq/impl-fetch';
 
 const requestor = new FetchRequestor({
-  baseURL: 'https://api.example.com',
+  baseURL: 'https://jsonplaceholder.typicode.com/todos/1',
   headers: {
     'Content-Type': 'application/json',
     'X-API-Key': 'your-api-key'
@@ -25,7 +25,7 @@ const requestor = new FetchRequestor({
 import { AxiosRequestor } from '@ureq/impl-axios';
 
 const requestor = new AxiosRequestor({
-  baseURL: 'https://api.example.com',
+  baseURL: 'https://jsonplaceholder.typicode.com/todos/1',
   headers: {
     'Content-Type': 'application/json'
   },
@@ -114,7 +114,7 @@ import { MemoryCacheStore } from '@ureq/lib-cache-store';
 
 const request = new Request(
   new FetchRequestor({
-    baseURL: 'https://api.example.com',
+    baseURL: 'https://jsonplaceholder.typicode.com/todos/1',
     headers: {
       'Content-Type': 'application/json',
       'X-API-Version': '1.0'
@@ -198,7 +198,7 @@ const request = new Request(
   new FetchRequestor({
     baseURL: isDev 
       ? 'http://localhost:3000/api'
-      : 'https://api.example.com'
+      : 'https://jsonplaceholder.typicode.com/todos/1'
   }),
   {
     retry: {
@@ -216,7 +216,7 @@ const request = new Request(
 ```typescript
 const request = new Request(
   new FetchRequestor({
-    baseURL: 'https://api.example.com',
+    baseURL: 'https://jsonplaceholder.typicode.com/todos/1',
     timeout: 10000
   }),
   {

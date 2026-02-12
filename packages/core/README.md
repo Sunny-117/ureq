@@ -18,7 +18,7 @@ import { FetchRequestor } from '@ureq/impl-fetch';
 
 // 创建请求实例
 const request = new Request(new FetchRequestor({
-  baseURL: 'https://api.example.com'
+  baseURL: 'https://jsonplaceholder.typicode.com/todos/1'
 }));
 
 // 发起请求
@@ -40,7 +40,7 @@ const data = await request.get('/users');
 ```typescript
 const request = new Request(
   new FetchRequestor({
-    baseURL: 'https://api.example.com'
+    baseURL: 'https://jsonplaceholder.typicode.com/todos/1'
   }),
   {
     retry: {

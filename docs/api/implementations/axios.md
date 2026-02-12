@@ -36,7 +36,7 @@ API 基础 URL。
 
 ```typescript
 const requestor = new AxiosRequestor({
-  baseURL: 'https://api.example.com'
+  baseURL: 'https://jsonplaceholder.typicode.com/todos/1'
 });
 ```
 
@@ -71,7 +71,7 @@ import { AxiosRequestor } from '@ureq/impl-axios';
 
 const request = new Request(
   new AxiosRequestor({
-    baseURL: 'https://api.example.com',
+    baseURL: 'https://jsonplaceholder.typicode.com/todos/1',
     headers: {
       'Content-Type': 'application/json'
     },

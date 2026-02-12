@@ -19,7 +19,7 @@ import { Request } from '@ureq/core';
 import { AxiosRequestor } from '@ureq/impl-axios';
 
 const request = new Request(new AxiosRequestor({
-  baseURL: 'https://api.example.com',
+  baseURL: 'https://jsonplaceholder.typicode.com/todos/1',
   headers: {
     'Content-Type': 'application/json'
   },
@@ -75,7 +75,7 @@ interface AxiosRequestorConfig {
 
 ```typescript
 const requestor = new AxiosRequestor({
-  baseURL: 'https://api.example.com'
+  baseURL: 'https://jsonplaceholder.typicode.com/todos/1'
 });
 
 const request = new Request(requestor);
@@ -86,7 +86,7 @@ const data = await request.get('/users');
 
 ```typescript
 const requestor = new AxiosRequestor({
-  baseURL: 'https://api.example.com',
+  baseURL: 'https://jsonplaceholder.typicode.com/todos/1',
   headers: {
     'Authorization': 'Bearer your-token'
   }
@@ -97,7 +97,7 @@ const requestor = new AxiosRequestor({
 
 ```typescript
 const requestor = new AxiosRequestor({
-  baseURL: 'https://api.example.com',
+  baseURL: 'https://jsonplaceholder.typicode.com/todos/1',
   withCredentials: true  // 携带 Cookie
 });
 ```

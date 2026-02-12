@@ -96,12 +96,12 @@ const request = new Request(new FetchRequestor());
 
 // 添加配置
 const request = new Request(
-  new FetchRequestor({ baseURL: 'https://api.example.com' })
+  new FetchRequestor({ baseURL: 'https://jsonplaceholder.typicode.com/todos/1' })
 );
 
 // 添加功能
 const request = new Request(
-  new FetchRequestor({ baseURL: 'https://api.example.com' }),
+  new FetchRequestor({ baseURL: 'https://jsonplaceholder.typicode.com/todos/1' }),
   { retry: { maxRetries: 3 }, cache: { ttl: 60000 } }
 );
 

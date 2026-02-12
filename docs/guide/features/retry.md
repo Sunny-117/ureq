@@ -171,7 +171,7 @@ const request = new Request(
 ```typescript
 const apiRequest = new Request(
   new FetchRequestor({
-    baseURL: 'https://api.example.com'
+    baseURL: 'https://jsonplaceholder.typicode.com/todos/1'
   }),
   {
     retry: {

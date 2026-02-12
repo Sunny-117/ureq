@@ -157,7 +157,7 @@ const request = new Request(
 ```typescript
 const userRequest = new Request(
   new FetchRequestor({
-    baseURL: 'https://api.example.com'
+    baseURL: 'https://jsonplaceholder.typicode.com/todos/1'
   }),
   {
     cache: {

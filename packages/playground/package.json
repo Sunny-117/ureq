@@ -4,12 +4,13 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "tsup",
+    "build": "tsup --watch",
     "demo:basic": "node dist/demos/basic.js",
     "demo:features": "node dist/demos/features.js",
     "demo:interceptors": "node dist/demos/interceptors.js",
     "demo:error-handling": "node dist/demos/error-handling.js",
-    "demo:all": "npm run demo:basic && npm run demo:features && npm run demo:interceptors && npm run demo:error-handling"
+    "demo:all": "npm run demo:basic && npm run demo:features && npm run demo:interceptors && npm run demo:error-handling",
+    "demo:fetch": "node dist/demos/fetch.js"
   },
   "dependencies": {
     "@ureq/core": "workspace:*",
