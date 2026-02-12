@@ -14,7 +14,7 @@
   "scripts": {
     "build": "tsup --config tsup.config.ts",
     "dev": "tsup --config tsup.config.ts --watch",
-    "test": "vitest"
+    "test": "vitest --run"
   },
   "devDependencies": {
     "tsup": "^8.3.6",

@@ -1,8 +1,29 @@
+/**
+ * 响应类型
+ */
+export type ResponseType = 'json' | 'text' | 'blob' | 'arraybuffer' | 'formData';
+
+/**
+ * 响应转换器函数类型
+ * @param response 原始响应对象（Fetch Response 或其他）
+ * @returns 转换后的数据
+ */
+export type ResponseTransformer<T = any> = (response: any) => Promise<T>;
+
 export interface RequestOptions {
   headers?: Record<string, string>;
   timeout?: number;
   signal?: AbortSignal;
-  responseType?: 'arraybuffer' | 'json' | 'text' | 'blob';
+  /**
+   * 响应类型，用于指定如何解析响应体
+   * @default 'json'
+   */
+  responseType?: ResponseType;
+  /**
+   * 自定义响应转换器，优先级高于 responseType
+   * 当需要自定义响应解析逻辑时使用
+   */
+  responseTransformer?: ResponseTransformer;
   [key: string]: any;
 }
 

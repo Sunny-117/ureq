@@ -21,7 +21,7 @@
   "scripts": {
     "build": "tsup --config tsup.config.ts",
     "dev": "tsup --config tsup.config.ts --watch",
-    "test": "vitest"
+    "test": "vitest --run"
   },
   "dependencies": {
     "@ureq/lib-cache-store": "workspace:*",

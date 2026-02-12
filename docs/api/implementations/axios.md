@@ -63,6 +63,49 @@ const requestor = new AxiosRequestor({
 });
 ```
 
+## 响应类型
+
+支持多种响应类型，通过 `responseType` 选项指定：
+
+```typescript
+// JSON（默认）
+const jsonRes = await request.get<User>('/api/user/1');
+
+// 文本
+const textRes = await request.get<string>('/robots.txt', {
+  responseType: 'text',
+});
+
+// Blob
+const blobRes = await request.get<Blob>('/api/image.png', {
+  responseType: 'blob',
+});
+
+// ArrayBuffer
+const bufferRes = await request.get<ArrayBuffer>('/api/file', {
+  responseType: 'arraybuffer',
+});
+```
+
+## 自定义响应转换
+
+使用 `responseTransformer` 自定义响应解析：
+
+```typescript
+const res = await request.get<User>('/api/user/1', {
+  responseTransformer: async (axiosResponse) => {
+    // axiosResponse 包含 data, status, headers 等
+    return axiosResponse.data.user;
+  },
+});
+```
+
+::: tip
+注意：AxiosRequestor 的 `responseTransformer` 接收的是 axios 响应对象，而不是原始 Response。
+:::
+
+详细用法请参考 [响应类型与转换](/guide/features/response-type)。
+
 ## 完整示例
 
 ```typescript
@@ -95,6 +138,8 @@ const users = await request.get('/users');
 - ✅ 请求和响应拦截器
 - ✅ 取消请求支持
 - ✅ 进度监控
+- ✅ 多种响应类型支持
+- ✅ 自定义响应转换器
 
 ## 浏览器兼容性
 
@@ -118,4 +163,5 @@ const users = await request.get('/users');
 
 - [FetchRequestor](/api/implementations/fetch)
 - [Requestor API](/api/core/requestor)
+- [响应类型与转换](/guide/features/response-type)
 - [快速开始](/guide/getting-started)

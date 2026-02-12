@@ -42,7 +42,8 @@ export default defineConfig({
             { text: '请求缓存', link: '/guide/features/cache' },
             { text: '并发控制', link: '/guide/features/parallel' },
             { text: '幂等性保证', link: '/guide/features/idempotent' },
-            { text: '超时控制', link: '/guide/features/timeout' }
+            { text: '超时控制', link: '/guide/features/timeout' },
+            { text: '响应类型与转换', link: '/guide/features/response-type' }
           ]
         },
         {

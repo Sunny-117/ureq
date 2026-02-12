@@ -68,9 +68,27 @@ interface RequestOptions {
   headers?: Record<string, string>;
   params?: Record<string, any>;
   timeout?: number;
+  responseType?: ResponseType;
+  responseTransformer?: ResponseTransformer;
   [key: string]: any;
 }
 ```
+
+### ResponseType
+
+```typescript
+type ResponseType = 'json' | 'text' | 'blob' | 'arraybuffer' | 'formData';
+```
+
+指定响应体的解析方式，默认为 `json`。
+
+### ResponseTransformer
+
+```typescript
+type ResponseTransformer<T = any> = (response: any) => Promise<T>;
+```
+
+自定义响应转换函数，优先级高于 `responseType`。
 
 ### Response
 
@@ -80,7 +98,6 @@ interface Response<T> {
   status: number;
   statusText: string;
   headers: Record<string, string>;
-  config: RequestOptions;
 }
 ```
 

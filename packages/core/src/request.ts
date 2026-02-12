@@ -56,10 +56,16 @@ export class Request {
     });
 
     try {
-      // 使用类型断言和映射类型来解决索引签名问题
-      type RequestMethod = keyof Requestor;
-      const requestMethod = method.toLowerCase() as RequestMethod;
-      const response = await this.requestor[requestMethod](url, data, config);
+      const methodLower = method.toLowerCase();
+      let response;
+
+      // GET 和 DELETE 方法不需要 data 参数
+      if (methodLower === 'get' || methodLower === 'delete') {
+        response = await (this.requestor as any)[methodLower](url, config);
+      } else {
+        response = await (this.requestor as any)[methodLower](url, data, config);
+      }
+
       return (await this.interceptors.runResponseInterceptors(response)).data as T;
     } catch (error) {
       throw error;
