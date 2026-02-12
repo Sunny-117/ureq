@@ -1,6 +1,6 @@
 {
   "name": "@ureq/lib-cache-store",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Cache store implementations for universal request library",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

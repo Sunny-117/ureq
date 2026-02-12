@@ -1,6 +1,6 @@
 {
   "name": "@ureq/impl-axios",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Axios implementation for universal request library",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

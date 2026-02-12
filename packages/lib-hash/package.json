@@ -1,6 +1,6 @@
 {
   "name": "@ureq/lib-hash",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Hash utilities for universal request library",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

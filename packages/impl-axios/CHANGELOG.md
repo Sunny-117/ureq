@@ -1,5 +1,13 @@
 # @ureq/impl-axios
 
+## 0.0.4
+
+### Patch Changes
+
+- 发布新版本
+- Updated dependencies
+  - @ureq/core@0.0.4
+
 ## 0.0.3
 
 ### Patch Changes

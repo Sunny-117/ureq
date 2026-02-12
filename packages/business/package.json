@@ -1,6 +1,6 @@
 {
   "name": "@ureq/business",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Universal request library business logic",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
